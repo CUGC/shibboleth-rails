@@ -4,13 +4,14 @@ module Shibboleth::Rails
     private
 
     def authenticated?
+      Rails.logger.info request
       request.env['employeeNumber'].present?
     end
 
     def shibboleth
       {
         :emplid       => request.env['employeeNumber'],
-        :name_n       => request.env['REMOTE_USER'].chomp("@osu.edu"),
+        :name_n       => request.env['REMOTE_USER'].chomp("@cornell.edu"),
         :affiliations => request.env['affiliation'],
         :first_name   => request.env['FIRST-NAME'] || request.env['givenName'],
         :last_name    => request.env['LAST-NAME'] || request.env['sn'],
