@@ -3,8 +3,8 @@ class UserSessionsController < ApplicationController
   # skip CanCan authorization
   skip_authorization_check if respond_to?(:skip_authorization_check)
 
-  skip_before_filter :require_shibboleth
-  before_filter :not_in_production
+  skip_before_action :require_shibboleth
+  before_action :not_in_production
 
   def new
     @users = User.all
